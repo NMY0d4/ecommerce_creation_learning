@@ -18,25 +18,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
     
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    #[Assert\NotBlank(message:'Veuillez entrer votre email')]
-    #[Assert\Email(message:'Veuillez entrer une addresse email valide')]
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private $email;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    #[Assert\Length(min: 5, minMessage: "minimum 5 caractères")]
+    #[Assert\Length(min: 5)]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message:'Veuillez entrer votre prénom')]
-    #[Assert\Length(min: 3, minMessage: "minimum 3 caractères")]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message:'Veuillez entrer votre nom')]
-    #[Assert\Length(min: 2, minMessage: "minimum 2 caractères")]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2)]
     private $lastname;
 
     public function getId(): ?int
