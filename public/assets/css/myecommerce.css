@@ -1,3 +1,7 @@
+html {
+    font-size: 62.5%;
+}
+
 .navbar-item-custom,
 .navbar-item-custom a {
     color: white;
@@ -10,4 +14,34 @@
     width: 100%;
     background-color: #dfeaff;
     padding-top: 25px;
+}
+
+.product-item {
+    margin-top: 2.5rem;
+}
+
+.product-item h5 {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.product-item .product-subtitle {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.product-item .product-price {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.product-container {
+    margin-bottom: 18rem;
+}
+
+.product-page-price {
+    font-size: 4rem;
+    font-weight: bold;
 }
