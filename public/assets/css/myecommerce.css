@@ -2,6 +2,10 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    position: relative;
+}
+
 .navbar-item-custom,
 .navbar-item-custom a {
     color: white;
@@ -9,11 +13,10 @@ html {
 
 .footer-custom {
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     width: 100%;
     background-color: #dfeaff;
-    padding-top: 25px;
+    padding-top: 2.5rem;
 }
 
 .product-item {
