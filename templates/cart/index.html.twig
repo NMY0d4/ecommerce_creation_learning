@@ -7,6 +7,8 @@
     <p>Retrouvez l'ensemble des produits que vous avez ajouté à votre panier.</p>
     <hr>
    
+    {% if cart|length > 0 %}
+    
         <table class="table mt-3">
             <thead>
                 <tr>                  
@@ -15,6 +17,7 @@
                     <th scope="col">Quantité</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Total</th>
+                    <th scope="col"></th>                    
                 </tr>
             </thead>
             <tbody>
@@ -28,9 +31,23 @@
                         {{ product.product.name }} <br>
                         <small>{{ product.product.subtitle}}</small>
                     </td>
-                    <td>X {{ product.quantity }}</td>
+                    <td>
+                        <a href="{{ path('app_decrease_to_cart', {id : product.product.id}) }}">
+                            <img src="{{asset('assets/img/moins.png')}}" alt="supression produit" class="quant-plus">
+                        </a>
+                           <b> X {{ product.quantity }} </b> 
+                        <a href="{{ path('app_add_to_cart', {id : product.product.id}) }}">
+                            <img src="{{asset('assets/img/plus.png')}}" alt="ajouter un produit" class="quant-moins">
+                        </a>
+
+                    </td>
                     <td>{{(product.product.price / 100)|number_format(2,',','.')}} €</td>
-                    <td>{{((product.product.price * product.quantity) / 100)|number_format(2,',','.')}} €</td>                
+                    <td>{{((product.product.price * product.quantity) / 100)|number_format(2,',','.')}} €</td>    
+                    <td>
+                    <a href="{{ path('app_delete_to_cart', {id : product.product.id}) }}">
+                        <img src="{{asset('assets/img/trash.png')}}" height="15px" alt="supression ligne produit">
+                    </a>
+                    </td>       
                 </tr>
                 {% set total = total + (product.product.price * product.quantity) %}
             {% endfor %}
@@ -41,5 +58,9 @@
             <b>Total de mon panier: {{(total / 100)|number_format(2,',','.')}} €</b><br>
             <a href="" class="btn btn-success btn-block">Valider mon panier</a>
         </div>
+    {% else %}
+        <hr>
+        <p><b>Votre panier est vide...</b></p>
+    {% endif %}
     
 {% endblock %}

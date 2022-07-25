@@ -17,6 +17,7 @@ body {
     width: 100%;
     background-color: #dfeaff;
     padding-top: 2.5rem;
+    margin-top: 8rem;
 }
 
 .product-item {
@@ -47,4 +48,16 @@ body {
 .product-page-price {
     font-size: 4rem;
     font-weight: bold;
+}
+
+.cart-icon {
+    height: 2rem;
+    padding-left: 2rem;
+}
+
+.quant-plus,
+.quant-moins {
+    display: inline-block;
+    margin: 0 0.5rem 0.2rem 0.5rem;
+    height: 0.8rem;
 }
