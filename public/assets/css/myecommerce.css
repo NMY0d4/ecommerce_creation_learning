@@ -61,3 +61,8 @@ body {
     margin: 0 0.5rem 0.2rem 0.5rem;
     height: 0.8rem;
 }
+
+.block-small {
+    max-width: 60rem;
+    margin: 0 auto;
+}

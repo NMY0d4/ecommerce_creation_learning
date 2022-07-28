@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider la commande - My Ecommerce{% endblock %}
+
+{% block content %}
+
+    <h2>Je passe ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande sur my Ecommerce.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+        <b>Choisir mon adresse de livraison</b><br>
+        {% set formhtml %}
+            {{form(form)}}
+        {% endset %}
+            {{formhtml|replace({'[br]' : '<br/>'})|raw }}
+        <b>Choisir mon transporteur</b>
+        </div>
+        <div class="col-md-6">
+        <b>Récap de ma commande</b><br>
+        <b>Bouton pour payer</b>
+        </div>
+    </div>
+
+{% endblock %}

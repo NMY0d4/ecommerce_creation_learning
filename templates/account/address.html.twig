@@ -10,9 +10,9 @@
     </p>
     <a href="{{ path('app_account')}}">Retour</a>
     {% if app.user.addresses|length == 0 %}
-    <p class="text text-center mt-4">
-       Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une veuillez <a href="{{path('app_account_address_add')}}">Cliquez ici</a>.        
-    </p>
+        <p class="text text-center mt-4">
+        Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une veuillez <a href="{{path('app_account_address_add')}}">Cliquez ici</a>.        
+        </p>
     {% else %}
         <div class="row">
         {% for address in app.user.addresses %}
