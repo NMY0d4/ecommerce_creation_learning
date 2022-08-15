@@ -66,3 +66,26 @@ body {
     max-width: 60rem;
     margin: 0 auto;
 }
+
+.col-form-label {
+    font-weight: bold;
+}
+
+.form-check {
+    background-color: #dfeaff;
+    padding: 2rem 6.5rem;
+    margin-top: 1.3rem;
+
+    display: flex;
+    align-items: center;
+}
+
+.form-check label {
+    margin-left: 1rem;
+}
+
+.order-summary {
+    background-color: #dfeaff;
+    padding: 2rem;
+    margin-top: 2.2rem;
+}
