@@ -4,14 +4,14 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\Order;
-use App\Entity\OrderDetails;
-use App\Form\OrderType;
 use DateTimeImmutable;
+use App\Form\OrderType;
+use App\Entity\OrderDetails;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class OrderController extends AbstractController
@@ -23,7 +23,7 @@ class OrderController extends AbstractController
     }
 
     #[Route('/commande', name: 'app_order')]
-    public function index(Cart $cart, Request $request): Response
+    public function index(Cart $cart): Response
     {
         if(!$this->getUser()->getAddresses()->getValues()){
             return $this->redirectToRoute('app_account_address_add');
@@ -39,7 +39,7 @@ class OrderController extends AbstractController
         ]);
     }
 
-    #[Route('/commande/recapitulatif', name: 'app_order_recap', methods:['POST'])]
+    #[Route('/commande/recapitulatif', name: 'app_order_recap', methods:['POST', 'GET'])]
     public function add(Cart $cart, Request $request): Response
     {        
 
@@ -72,6 +72,7 @@ class OrderController extends AbstractController
             $order->setIsPaid(0);
 
             $this->em->persist($order);
+            
 
             // Enregistrer mes produits orderderails            
             foreach ($cart->getFull() as $product) {
@@ -81,16 +82,19 @@ class OrderController extends AbstractController
                 $orderDetails->setQuantity($product['quantity']);
                 $orderDetails->setPrice($product['product']->getPrice());
                 $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']); 
-                $this->em->persist($orderDetails);            
+                $this->em->persist($orderDetails); 
+                
+              
             }
 
-            $this->em->flush();
-
-            return $this->render('order/add.html.twig', [            
-                'cart' => $cart->getFull(),
-                'carrier' => $carriers, 
-                'delivery' => $delivery_content
-            ]);
+            // $this->em->flush(); 
+           
+                return $this->render('order/add.html.twig', [            
+                    'cart' => $cart->getFull(),
+                    'carrier' => $carriers, 
+                    'delivery' => $delivery_content                    
+                ]);
+           
 
         }
 

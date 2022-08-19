@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Classe;
-
 use App\Entity\Category;
 
 
