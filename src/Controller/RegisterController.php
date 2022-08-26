@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,20 +23,38 @@ class RegisterController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function index(Request $request, UserPasswordHasherInterface $hasher): Response
     {
+        $notification = null;
+
         $user = new User;
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $user = $form->getData();
-            $password = $hasher->hashPassword($user,$user->getPassword());
-            $user->setPassword($password);
-            $this->em->persist($user);
-            $this->em->flush();
+
+            $search_email = $this->em->getRepository(User::class)->findOneByEmail($user->getEmail());
+
+            if(!$search_email){
+                $password = $hasher->hashPassword($user,$user->getPassword());
+                $user->setPassword($password);
+                $this->em->persist($user);
+                $this->em->flush();
+
+                $mail = new Mail();
+                $content = "Bonjour ".$user->getFullName()."<br>Bienvenue sur notre site pour servir nos clients de la meilleure façon.";
+                $mail->send($user->getEmail(), $user->getFullName(), 'Bienvenue sur My ecommerce', $content );
+
+                $notification = 'Votre inscription c\'est correctement déroulée. Vous pouvez vous connectez à votre compte.';            
+                
+            } else {                
+                $notification = 'L\'email que vous avez entré existe déjà.';   
+            }
         }        
 
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(),
+            'notification' => $notification
         ]);
     }
 }

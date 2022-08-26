@@ -19,7 +19,6 @@ class AccountOrderController extends AbstractController
     public function index(): Response
     {
         $orders = $this->em->getRepository(Order::class)->findSuccessOrders($this->getUser());
-
         
 
         return $this->render('account/order.html.twig', compact('orders'));
