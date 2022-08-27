@@ -4,11 +4,12 @@ namespace App\Classe;
 
 use Mailjet\Client;
 use Mailjet\Resources;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class Mail
+class Mail extends AbstractController
 {
     private $api_key = 'bc402d472f65b5cecebe016e01d05d89';
-    private $secret_key = '9e513947f81b1d7e42ad6f22e09c0ec0';
+    private $secret_key = $this->getParameter('MAILJET_SECRET_KEY');
 
     public function send($to_email, $to_name, $subject, $content)
     {
