@@ -11,7 +11,7 @@ class Mail extends AbstractController
     private $api_key = 'bc402d472f65b5cecebe016e01d05d89';
     
     public function send($to_email, $to_name, $subject, $content)
-    {
+    {        
         $secret_key = $this->getParameter('mailjetsecretkey');
         
         $mj = new Client($this->api_key, $secret_key, true,['version' => 'v3.1']);
