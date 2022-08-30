@@ -9,11 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class Mail extends AbstractController
 {
     private $api_key = 'bc402d472f65b5cecebe016e01d05d89';
-    private $secret_key = $this->getParameter('MAILJET_SECRET_KEY');
-
+    
     public function send($to_email, $to_name, $subject, $content)
     {
-        $mj = new Client($this->api_key, $this->secret_key, true,['version' => 'v3.1']);
+        $secret_key = $this->getParameter('mailjetsecretkey');
+        
+        $mj = new Client($this->api_key, $secret_key, true,['version' => 'v3.1']);
         $body = [
             'Messages' => [
                 [
