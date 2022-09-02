@@ -78,8 +78,9 @@
                 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        {% for key, header in headers %}
-                            <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key==0 %}class="active"{% endif %} ></li>                            
+                        {% for key, header in headers %}                            
+                            <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key==0 %}class="active"{% endif %} ></li>  
+                            
                         {% endfor %}                       
                     </ol>
                     <div class="carousel-inner">
@@ -87,10 +88,10 @@
                             <div class="carousel-item {% if key==0 %}active{% endif %}" style="background: url('/uploads/{{ header.illusttration }}');background-size:cover;background-position:center">
                                 
                                 <div class="container">
-                                    <div class="carousel-caption text-left d-inline text-info">
-                                        <h1 class="bg-dark p-2" style="color:white;display: inline-block">{{ header.title }}</h1> <br>
-                                        <p class="bg-dark p-2" style="color:white;display: inline-block">{{ header.content }}</p>
-                                        <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
+                                    <div class="carousel-caption text-left d-inline text-info" >
+                                        <h1 class="bg-dark p-2" style="color:white;display: inline-block;font-size:3.5rem;">{{ header.title }}</h1> <br>
+                                        <p class="bg-dark p-2" style="color:white;display: inline-block; font-size:2rem;">{{ header.content }}</p>
+                                        <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button" style="color:white;display: inline-block; font-size:1.5rem;">{{ header.btnTitle }}</a></p>
                                     </div>
                                 </div>
                             </div>

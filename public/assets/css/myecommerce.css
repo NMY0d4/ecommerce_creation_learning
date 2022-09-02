@@ -4,6 +4,12 @@ html {
 
 body {
     position: relative;
+    font-size: 1.6rem;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    margin-right: 1.5rem;
 }
 
 .navbar-item-custom,
@@ -69,6 +75,13 @@ body {
 
 .col-form-label {
     font-weight: bold;
+}
+
+form,
+input,
+.form-control,
+.btn {
+    font-size: 1.6rem;
 }
 
 .form-check {

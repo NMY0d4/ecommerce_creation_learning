@@ -5,7 +5,7 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/upload
+/public/uploads
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -19,3 +19,7 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> contient la clé secrète pour mailjet ###
+/src/classe/Mail
+###< contient la clé secrète pour mailjet ###

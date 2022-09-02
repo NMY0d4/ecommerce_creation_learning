@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - GM_Web My Ecommerce{% endblock %}
+
+{% block content %}
+    <div class="block-small">
+
+        <h1 class="h1 mb-3 font-weight-normal">Réinitialiser mon mot de passe</h1>
+        
+        {% for message in app.flashes('info') %}
+            <div class="alert alert-info text-center">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.flashes('info') %}
+            <div class="alert alert-info text-center">{{ message }}</div>
+        {% endfor %}
+
+        {{form(form)}}
+        
+    </div>
+{% endblock %}
