@@ -5,11 +5,35 @@
 {% block content %}
     <h1>Mon compte</h1>
     <p>
-     Bienvenue {{ app.user.firstname }} dans votre compte.<br> C'est dans cet espace que vous allez pouvoir gérer toute vos informations personnelles.
+    Bienvenue {{ app.user.firstname }} dans votre compte.<br> C'est dans cet espace que vous allez pouvoir gérer toute vos informations personnelles.
     </p>
-    <a href="{{path('app_account_password')}}">Modifier mot de passe</a><br>
-    <a href="{{path('app_account_address')}}">Gérer mes addresses</a><br>
-    <a href="{{path('app_account_order')}}">Mes commandes</a><br>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <small>
+            <a href="/admin">Accéder au backoffice</a><br>
+        </small>
+    {% endif %}
+
+    <div class="row mon_compte">
+        <div class="col-4">
+            <div class="account-item text-center">
+                <img src="{{ asset('assets/img/password.png')}}" alt="icon password">
+                <a href="{{path('app_account_password')}}">Modifier mot de passe</a>     
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="account-item text-center">
+                <img src="{{asset('assets/img/address.png')}}" alt="icon adresse">
+                 <a href="{{path('app_account_address')}}">Gérer mes addresses</a>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="account-item text-center">
+                <img src="{{asset('assets/img/shopping-cart-ma.png')}}" alt="icon commandes">
+                <a href="{{path('app_account_order')}}">Mes commandes</a>
+            </div>
+        </div>
+    </div>
     
      
 {% endblock %}

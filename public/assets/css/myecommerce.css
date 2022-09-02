@@ -7,6 +7,14 @@ body {
     font-size: 1.6rem;
 }
 
+header {
+    margin-bottom: 15rem;
+}
+
+.carousel {
+    margin-top: -13.5rem;
+}
+
 .navbar-brand {
     font-size: 2rem;
     margin-right: 1.5rem;
@@ -17,13 +25,18 @@ body {
     color: white;
 }
 
+/* .collapse a img {
+    width: 2.5rem;
+    height: 2.5rem;
+} */
+
 .footer-custom {
     text-align: center;
     position: absolute;
     width: 100%;
     background-color: #dfeaff;
-    padding-top: 2.5rem;
-    margin-top: 8rem;
+    padding: 2.5rem;
+    margin-top: 15rem;
 }
 
 .product-item {
@@ -84,6 +97,19 @@ input,
     font-size: 1.6rem;
 }
 
+input,
+textarea {
+    margin-bottom: 2rem;
+}
+
+.form-check-input {
+    margin-bottom: 0;
+}
+
+h2 {
+    margin-bottom: 2rem;
+}
+
 .form-check {
     background-color: #dfeaff;
     padding: 2rem 6.5rem;
@@ -101,4 +127,36 @@ input,
     background-color: #dfeaff;
     padding: 2rem;
     margin-top: 2.2rem;
+}
+
+.mon_compte {
+    margin-bottom: 18rem;
+}
+
+.account-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #dfeaff;
+    padding: 7rem;
+}
+
+.account-item a {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.account-item a:hover,
+.account-item a:active {
+    opacity: 0.6;
+    text-decoration: none;
+}
+
+.account-item img {
+    width: 5rem;
+    height: 5rem;
 }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter - GM_Web{% endblock %}
+
+{% block content %}
+    <h1>Formulaire de contact</h1>
+
+    <p>N'hésitez pas à prendre contact avec notre équipe, nous vous répondrons dans les meilleures délais.</p>
+
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info text-center">{{ message }}</div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-8">
+            {{form(form)}}
+        </div>
+        <div class="col-4">
+            <strong>GM_Web, My-Ecommerce</strong><br>
+            Vous pouvez nous contacter: <br>
+            06 ** ** ** ** <br>
+            adresse ligne 1 <br>
+            adresse ligne 2 <br>
+            adresse ligne 3 <br>
+            email.mail@gmail.fr   
+        </div>
+    </div>
+
+{% endblock %}
