@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Mail;
+use App\Classe\RetServ;
 use App\Entity\ResetPassword;
 use App\Entity\User;
 use App\Form\ResetPasswordType;
@@ -23,7 +24,7 @@ class ResetPasswordController extends AbstractController
     }
 
     #[Route('/mot-de-pass-oublie', name: 'app_reset_password')]
-    public function index(Request $request): Response
+    public function index(Request $request, RetServ $retServ): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
@@ -46,14 +47,15 @@ class ResetPasswordController extends AbstractController
 
                 // 2 : Envoyer un email à l'utilisateur avec un lien lui mermettant de maj son mdp
 
-                $url = $this->generateUrl('app_update_password', ['token' => $reset_password->getToken()]);
-                
+                $url = $this->generateUrl('app_update_password', ['token' => $reset_password->getToken()]);                
 
                 $content = "Bonjour ".$user->getFullName()."<br/>Vous avez demandé à réinitialiser votre mot de passe sur notre site.<br/><br/>";
-                $content.='Merci de bien vouloir cliquer sur le lien suivant pour <a href="'.$url.'" >mettre à jour votre mot de passe</a>.';                
+                $content.='Merci de bien vouloir cliquer sur le lien suivant pour <a href="'.$url.'" >mettre à jour votre mot de passe</a>.'; 
+                
+                $apikey =  $retServ->getApiSecretKey();
 
                 $mail = new Mail();                
-                $mail->send($email, $user->getFullName(), 'Réinitialiser votre mot de passe sur GM_Web My Ecommerce', $content);
+                $mail->send($email, $user->getFullName(), 'Réinitialiser votre mot de passe sur GM_Web My Ecommerce', $content, $apikey);
                 $this->addFlash('info', 'Vous allez recevoir un mail avec la procédure pour réinitialiser votre mot de passe(ℹ valable 1h).');
             } else {
             $this->addFlash('info', 'Cette adresse email est inconnue.');

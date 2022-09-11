@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Mail;
+use App\Classe\RetServ;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,7 +22,7 @@ class RegisterController extends AbstractController
     }
 
     #[Route('/inscription', name: 'app_register')]
-    public function index(Request $request, UserPasswordHasherInterface $hasher): Response
+    public function index(Request $request, UserPasswordHasherInterface $hasher, RetServ $retServ): Response
     {
         $notification = null;
 
@@ -41,9 +42,11 @@ class RegisterController extends AbstractController
                 $this->em->persist($user);
                 $this->em->flush();
 
+                $apikey =  $retServ->getApiSecretKey(); 
+
                 $mail = new Mail();
                 $content = "Bonjour ".$user->getFullName()."<br>Bienvenue sur notre site pour servir nos clients de la meilleure façon.";
-                $mail->send($user->getEmail(), $user->getFullName(), 'Bienvenue sur My ecommerce', $content );
+                $mail->send($user->getEmail(), $user->getFullName(), 'Bienvenue sur My ecommerce', $content, $apikey );
 
                 $notification = 'Votre inscription c\'est correctement déroulée. Vous pouvez vous connectez à votre compte.';            
                 

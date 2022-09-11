@@ -4,22 +4,17 @@ namespace App\Classe;
 
 use Mailjet\Client;
 use Mailjet\Resources;
-use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
-
-// use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class Mail
 {
-    private $api_key = 'bc402d472f65b5cecebe016e01d05d89';
-    private $secret_key =  '9e513947f81b1d7e42ad6f22e09c0ec0';
+    private $api_key = 'bc402d472f65b5cecebe016e01d05d89';    
 
-   
     
-    public function send($to_email, $to_name, $subject, $content)
-    {        
+    public function send($to_email, $to_name, $subject, $content, $apiKey)
+    { 
         
-        
-        $mj = new Client($this->api_key, $this->secret_key, true,['version' => 'v3.1']);
+        $mj = new Client($this->api_key, $apiKey, true,['version' => 'v3.1']);
         $body = [
             'Messages' => [
                 [

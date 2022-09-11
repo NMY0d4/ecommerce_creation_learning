@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Classe\Mail;
 use App\Entity\Header;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
